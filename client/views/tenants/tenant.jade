@@ -1,0 +1,91 @@
+template(name="tenant")
+    .animated.fadeIn
+        +with tenant
+            .tenant
+                .page-header.position-relative
+                    h1.inline
+                        small
+                            a(href="{{pathFor 'buildingSpaces'}}") #{../building.name}
+                            i.ace-icon.fa.fa-angle-double-right
+                        small
+                            a(href="/buildings/#{../building._id}/spaces/#{space_id}/tenants")  #{../space.name}
+                            i.ace-icon.fa.fa-angle-double-right
+                        div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="firstname" data-value="#{firstname}" data-context="Tenants") #{firstname}
+                        div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="lastname" data-value="#{lastname}" data-context="Tenants") #{lastname}
+
+                .profile-user-info.profile-user-info-striped
+                    .profile-info-row
+                        .profile-info-name phone
+                        .profile-info-value
+                            div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="phone" data-value="#{phone}" data-context="Tenants") #{phone}
+                    .profile-info-row
+                        .profile-info-name email
+                        .profile-info-value
+                            div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="email" data-value="#{email}" data-context="Tenants") #{email}
+                    .profile-info-row
+                        .profile-info-name Address
+                        .profile-info-value
+                            address
+
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="address" data-value="#{address}" data-context="Tenants" data-title="{{xtitle 'address'}}") #{address}
+                                br
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="address2" data-value="#{address2}" data-context="Tenants" data-title="{{xtitle 'address2'}}") #{address2}
+                                br
+                                span(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="zip" data-value="#{zip}" data-context="Tenants" data-title="{{xtitle 'zip'}}") #{zip}
+                                | &nbsp;
+                                span(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="city" data-value="#{city}" data-context="Tenants" data-title="{{xtitle 'city'}}") #{city}
+                                br
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="country" data-value="#{country}" data-context="Tenants" data-title="{{xtitle 'country'}}") #{country}
+
+                    .profile-info-row
+                        .profile-info-name Rent
+                        .profile-info-value
+                            div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="rent" data-value="#{rent}" data-context="Tenants") #{rent}
+                            | Euro
+                    .profile-info-row
+                        .profile-info-name Costs
+                        .profile-info-value
+                            div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="costs" data-value="#{costs}" data-context="Tenants") #{costs}
+                            | Euro
+
+
+
+                    .profile-info-row
+                        .profile-info-name Duration
+                        .profile-info-value
+                            span
+                                strong Entry:
+                            div(id="text" class="editable" data-type="date" data-pk="#{_id}" data-name="entry_date" data-value="#{entry_date}" data-context="Tenants") {{date entry_date}}
+                            br
+                            span
+                                strong Duration:
+                            div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="contract_duration" data-value="#{contract_duration}" data-context="Tenants") #{contract_duration}
+                            | months
+                            br
+                            span
+                                strong Exit:
+                            div(id="text" class="editable" data-type="date" data-pk="#{_id}" data-name="exit_date" data-value="#{exit_date}" data-context="Tenants") {{date exit_date}}
+
+                    .profile-info-row
+                        .profile-info-name City
+                        .profile-info-value
+                            span(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="zip" data-value="#{zip}" data-context="Tenants") #{zip}
+                            | &nbsp;
+                            div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="city" data-value="#{city}" data-context="Tenants") #{city}
+                    .profile-info-row
+                        .profile-info-name Creation time
+                        .profile-info-value added {{fromNow creation_date}}
+                .space-12
+                .row
+                    .col-xs-12
+                        .tabbable
+                            ul.nav.nav-tabs
+                                li#menu-spaces(class="{{isActive 'tenantSpaces'}}")
+                                    a(href="{{pathFor 'tenantSpaces'}}") #{nbr_spaces} Spaces
+                                li#menu-dashboards(class="{{isActive 'tenantDashboards'}}")
+                                    a(href="{{pathFor 'tenantDashboards'}}") Dashboards
+                            .tab-content
+                                with ..
+                                    +yield "subTemplate"
+
+template(name="buildingSpaceTenant")

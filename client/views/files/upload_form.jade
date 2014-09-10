@@ -1,0 +1,23 @@
+template(name="uploadForm")
+    div#uploads
+        h1 Upload your docs here
+        input.myFileInput(type="file")
+    +imageList
+
+template(name="imageList")
+    h3 Images list
+    ul
+        each images
+            li
+                unless this.isUploaded
+                    +FS.UploadProgressBar bootstrap=true
+                else
+                    p Name: {{this.name}}
+                    p Extension: {{this.extension}}
+                    p Type: {{this.type}}
+                    p Size: {{this.size}} kb
+                    p Url: {{this.url}}
+                    a(href="{{url}}" target="_blank") img(src="{{url}}" alt="{{_id}}")
+                    +FS.DeleteButton class="btn btn-danger btn-xs"
+                        |Delete me
+

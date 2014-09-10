@@ -1,0 +1,62 @@
+template(name="breadcrumb")
+    .breadcrumbs#breadcrumbs
+        .breadcrumb
+            if building
+                with building
+                    .btn-group
+                        .btn.btn-sm.btn-info {{twitIcon "glyphicon glyphicon-home" "Building"}}
+                        button.btn.btn-sm.btn-info.dropdown-toggle.dropdown-toggle(data-toggle="dropdown")
+                            span.ace-icon.fa.fa-caret-down.icon-only
+                        ul.dropdown-menu
+                            each ../buildings
+                                li
+                                    a(href="{{pathFor 'buildingSpaces'}}") #{name}
+                            li.divider
+                            li(id="newBuildingButton")
+                                i.ace-icon.fa.fa-plus
+                                | New building
+            if space
+                if building
+                    |&nbsp;
+                    small
+                        i.ace-icon.fa.fa-angle-double-right
+                    |&nbsp;
+                with space
+                    .btn-group
+                        .btn.btn-sm.btn-green {{twitIcon "glyphicon glyphicon-bell" "Space"}}
+                        button.btn.btn-sm.btn-green.dropdown-toggle.dropdown-toggle(data-toggle="dropdown")
+                            span.ace-icon.fa.fa-caret-down.icon-only
+                        ul.dropdown-menu
+                            each ../building_spaces
+                                li
+                                    a(href="{{pathFor 'buildingSpaceTenants' _building_id=this.building_id _id=this._id}}") #{name}
+                            li.divider
+                            li
+                                a#newSpaceButton(href="#")
+                                    i.ace-icon.fa.fa-plus
+                                    | New space
+            if tenant
+                if building
+                    | &nbsp;
+                    small
+                        i.ace-icon.fa.fa-angle-double-right
+                    | &nbsp;
+                with tenant
+                    .btn-group
+                        .btn.btn-sm.btn-green {{twitIcon "glyphicon glyphicon-user" "Tenant"}}
+                        button.btn.btn-sm.btn-green.dropdown-toggle.dropdown-toggle(data-toggle="dropdown")
+                            span.ace-icon.fa.fa-caret-down.icon-only
+                        ul.dropdown-menu
+                            each ../tenants
+                                li
+                                    a(href="/buildings/#{building_id}/spaces/#{space_id}/tenants/#{_id}") #{firstname} #{lastname}
+                            li.divider
+                            li
+                                a#newTenantButton(href="#")
+                                    i.ace-icon.fa.fa-plus
+                                    | New space
+        #nav-search.nav-search
+            +yield "filters"
+            span(class="input-icon input-icon-right")
+                input(autocomplete="off" class="input-small nav-search-input search-query" id="keyword-search" name="q" placeholder="Search..." type="text" value="{{keyword_search}}")
+                i.ace-icon.glyphicon.glyphicon-remove-circle.pointer#cancel-keyword-search

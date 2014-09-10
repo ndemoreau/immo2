@@ -1,0 +1,44 @@
+template(name="contact")
+    .animated.fadeIn
+        +with contact
+                .contact
+                    .page-header.position-relative
+                        h1.inline(id="text" class="editable popup" data-type="text" data-pk="#{_id}" data-name="name" data-value="#{name}" data-context="Contacts") #{full_name}
+                        a.btn.btn-info.pull-right(id="editContactButton")
+                            i.ace-icon.fa.fa-plus
+                            | Edit contact
+                    .profile-user-info.profile-user-info-striped
+                        .profile-info-row
+                            .profile-info-name Address
+                            .profile-info-value
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="address" data-value="#{address}" data-context="Contacts") #{address}
+                        .profile-info-row
+                            .profile-info-name Address 2
+                            .profile-info-value
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="address2" data-value="#{address2}" data-context="Contacts") #{address2}
+
+                        .profile-info-row
+                            .profile-info-name City
+                            .profile-info-value
+                                span(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="zip" data-value="#{zip}" data-context="Contacts") #{zip}
+                                | &nbsp;
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="city" data-value="#{city}" data-context="Contacts") #{city}
+                        .profile-info-row
+                            .profile-info-name Iban
+                            .profile-info-value
+                                div(id="text" class="editable iban" data-type="text" data-pk="#{_id}" data-name="iban" data-value="#{iban}" data-context="Contacts") #{iban}
+                        .profile-info-row
+                            .profile-info-name Creation time
+                            .profile-info-value added #{created_on}
+        .space-12
+        .row
+            .col-xs-12
+                .tabbable
+                    ul.nav.nav-tabs
+                        li#menu-spaces(class="{{isActive 'contactSpaces'}}")
+                            a(href="{{pathFor 'contactSpaces'}}") #{nbr_spaces} Spaces
+                        li#menu-dashboards(class="{{isActive 'contactDashboards'}}")
+                            a(href="{{pathFor 'contactDashboards'}}") Dashboards
+                    .tab-content
+                        +yield "subTemplate"
+

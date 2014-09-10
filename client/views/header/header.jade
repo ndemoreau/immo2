@@ -1,0 +1,14 @@
+template(name="header")
+    #navbar.navbar.navbar-default.navbar-fixed-top
+        #navbar-container.navbar-container
+            button(type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler")
+                span.sr-only Toggle sidebar
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            .navbar-header.pull-left
+                a(class="navbar-brand" href="{{pathFor 'buildings'}}") ImmoCash
+            .navbar-collapse.collapse
+                ul(class="nav navbar-nav navbar-right")
+                    +loginButtons
+

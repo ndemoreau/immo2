@@ -1,0 +1,15 @@
+template(name="newInvoice")
+    #newInvoice.modal.fade
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button(type="button" class="close" data-dismiss="modal" aria-hidden="true") &times;
+                    h4(class="modal-title" id="myModalLabel") Add a new invoice
+                .modal-body
+                    +autoForm(collection="Invoices" id="insertInvoiceForm" type="insert")
+                        fieldset
+                            +afQuickField name="amount"
+                        button(type="submit" id="createInvoice" class="btn btn-default") Submit
+
+
+

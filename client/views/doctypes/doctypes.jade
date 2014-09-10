@@ -1,0 +1,24 @@
+template(name="doctypes")
+    .page-header.position-relative
+        h1.inline {{total}} Doctypes
+        a.btn.btn-info.pull-right(href="{{pathFor 'doctypeNew'}}")
+            i.ace-icon.fa.fa-plus
+            | New doctype
+    .clearfix
+    .widgets
+        .row
+            +each doctypes
+                +doctypesList
+    +uploadForm
+
+template(name="doctypesList")
+    .col-xs-12.col-sm-6
+        .widget-box.widget-color-purple
+            .widget-header
+                h4
+                    a(href="{{pathFor 'doctypeEdit'}}") #{name}
+            .widget-body
+                div(id="content_#{_id}") #{compiled_content}
+
+
+

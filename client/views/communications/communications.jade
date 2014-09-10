@@ -1,0 +1,31 @@
+template(name="communications")
+    .page-header.position-relative
+        a.btn.btn-info.pull-right#newCommunicationButton
+            i.ace-icon.fa.fa-plus
+            | New communication
+        h1 {{total}} Communications
+    .clearfix
+    +communicationsList
+
+template(name="tenantCommunications")
+    .animated.fadeIn
+        p content here
+        //.page-header.position-relative
+        //    a.btn.btn-info.btn-sm#newCommunicationButton
+        //        i.ace-icon.fa.fa-plus
+        //        | New communication
+        //.clearfix
+        //+communicationsList
+
+template(name="communicationsList")
+    .widgets
+        .row
+            +each communications
+                .col-xs-12.col-sm-6
+                    .widget-box.widget-color-purple
+                        .widget-header
+                            h4
+                                a(href="{{pathFor 'communication'}}") #{firstname} #{lastname}
+                        .widget-body
+                            p Exit date {{fromNow exit_date}}
+

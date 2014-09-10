@@ -1,0 +1,40 @@
+template(name="newTenant")
+    #newTenant.hidden
+        .animated.fadeIn
+            p #{contact_nbr}
+            h4 Add a new tenant for this space
+            .space-12
+            +autoForm(collection="Tenants" id="insertTenantForm" type="insert")
+                fieldset
+                    .form-group
+                        label.control-label(for="contact_id") Contact
+                        select(name="contact_id" data-schema-key="contact_id" class="chosen-select form-control" data-placeholder="Select a contact")
+                            option
+                            +contactIds
+                            option(value="new_contact") Create new
+                    +afQuickField name="rent"
+                    +afQuickField name="charges"
+                    +afQuickField name="entry_date" class="datepicker duration"
+                    +afQuickField name="contract_duration" class="duration"
+                    +afQuickField name="exit_date" class="datepicker"
+                    +afQuickField name="contract_type" options="allowed"
+                    if space_id
+                        input(type="hidden" data-schema-key="space_id" name="space_id" value="#{space_id}")
+                    else
+                        .form-group
+                            label.control-label(for="space_id") Space
+                                select(name="space_id" required data-schema-key="space_id" class="form-control")
+                                    option(value="") Select a building
+                                    +each building_spaces
+                                        option(value="{{_id}}") #{name}
+                .btn-group
+                    button(type="submit" id="createTenant" class="btn btn-default") Submit
+                    a(href="#" id="cancelNewTenant" class="btn btn-danger") Cancel
+            +contentFor "modal"
+                +newContact
+
+
+template(name="contactIds")
+    p #{count}
+    each contacts
+        option(value="{{_id}}") #{fullname}

@@ -1,0 +1,21 @@
+template(name="buildings")
+    .page-header.position-relative
+        h1.inline {{total}} Buildings
+        .btn.btn-info.pull-right(id="newBuildingButton")
+            i.ace-icon.fa.fa-plus
+            | New building
+    .clearfix
+    .widgets
+        .row
+            +each buildings
+                .col-xs-12.col-sm-6
+                    .widget-box.widget-color-purple
+                        .widget-header
+                            h4
+                                a(href="{{pathFor 'buildingSpaces'}}") #{name}
+                        .widget-body
+                            p Content here
+
+    +newBuilding
+
+

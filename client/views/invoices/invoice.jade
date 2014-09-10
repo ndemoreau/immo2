@@ -1,0 +1,44 @@
+template(name="invoice")
+    .animated.fadeIn
+        +with invoice
+                .invoice
+                    .page-header.position-relative
+                        h1.inline(id="text" class="editable popup" data-type="text" data-pk="#{_id}" data-name="name" data-value="#{name}" data-context="Invoices") #{full_name}
+                        a.btn.btn-info.pull-right(id="editInvoiceButton")
+                            i.ace-icon.fa.fa-plus
+                            | Edit invoice
+                    .profile-user-info.profile-user-info-striped
+                        .profile-info-row
+                            .profile-info-name Address
+                            .profile-info-value
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="address" data-value="#{address}" data-context="Invoices") #{address}
+                        .profile-info-row
+                            .profile-info-name Address 2
+                            .profile-info-value
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="address2" data-value="#{address2}" data-context="Invoices") #{address2}
+
+                        .profile-info-row
+                            .profile-info-name City
+                            .profile-info-value
+                                span(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="zip" data-value="#{zip}" data-context="Invoices") #{zip}
+                                | &nbsp;
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="city" data-value="#{city}" data-context="Invoices") #{city}
+                        .profile-info-row
+                            .profile-info-name Iban
+                            .profile-info-value
+                                div(id="text" class="editable iban" data-type="text" data-pk="#{_id}" data-name="iban" data-value="#{iban}" data-context="Invoices") #{iban}
+                        .profile-info-row
+                            .profile-info-name Creation time
+                            .profile-info-value added #{created_on}
+        .space-12
+        .row
+            .col-xs-12
+                .tabbable
+                    ul.nav.nav-tabs
+                        li#menu-spaces(class="{{isActive 'invoiceSpaces'}}")
+                            a(href="{{pathFor 'invoiceSpaces'}}") #{nbr_spaces} Spaces
+                        li#menu-dashboards(class="{{isActive 'invoiceDashboards'}}")
+                            a(href="{{pathFor 'invoiceDashboards'}}") Dashboards
+                    .tab-content
+                        +yield "subTemplate"
+

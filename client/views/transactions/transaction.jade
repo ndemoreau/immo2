@@ -1,0 +1,44 @@
+template(name="transaction")
+    with transaction
+        .widget-box.widget-color-blue3.transaction.animated.bounceInRight
+            .widget-header
+                h5.widget-title Transaction: {{date value_date}} #{amount} €
+                .widget-toolbar
+                    a(href="{{pathFor 'transactions'}}")
+                        i(class="1 ace-icon fa fa-chevron-right bigger-125 close-transaction")
+                .widget-toolbar.no-border
+                    |{{statusIcon status "bigger-125"}}
+            .widget-body
+                .widget-main
+                    unless contact_id
+                        h4 Please assign a contact to this transaction
+                        input(id="contact_id" placeholder="Search..." value="{{contact_id_filtered}}")
+                        if contact_id_filtered
+                            +contactsSearchList
+                    else
+                        with contact
+                            h5.inline
+                                | Contact
+                            i.ace-icon.glyphicon.glyphicon-edit.icon-link.delete-contact(id="{{_id}}")
+                            .profile-user-info.profile-user-info-striped
+                                .profile-info-row
+                                    .profile-info-name Contact
+                                    .profile-info-value #{fullname}
+                                .profile-info-row
+                                    .profile-info-name Transactions open
+                                    .profile-info-value #{open_transactions}
+                        unless building
+                            h4 Please assign a building to this transaction
+
+
+template(name="contactsSearchList")
+    if filtered_contacts
+        p #{total}
+        ul
+            each filtered_contacts
+                li.filtered-contact(id="#{_id}") #{fullname}
+    else
+        p "no match"
+
+
+

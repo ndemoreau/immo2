@@ -1,0 +1,11 @@
+template(name="doctypeForm")
+    h4 Fill-in this form
+    +autoForm(collection="Doctypes" id="insertDoctypeForm" doc=this.doctype type=this.formType)
+        fieldset
+            +afQuickField name="name"
+            +afQuickField name="content" rows=20 class="textarea"
+        .btn-group
+            button(type="submit" id="createDoctypeButton" class="btn btn-primary") Submit
+            a(href="#" id="deleteDoctypeButton" class="btn btn-danger") Delete
+    h5 Content preview
+    #preview {{template_rendered}}

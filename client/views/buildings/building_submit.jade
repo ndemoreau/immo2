@@ -1,0 +1,26 @@
+template(name="newBuilding")
+    #newBuilding.modal.fade
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button(type="button" class="close" data-dismiss="modal" aria-hidden="true") &times;
+                    h4(class="modal-title" id="myModalLabel") Fill-in this form
+                .modal-body
+                    +autoForm(collection="Buildings" id="insertBuildingForm" type="#{formType}")
+                        fieldset
+                            +afQuickField name="name"
+                            +afQuickField name="address"
+                        button(type="submit" id="createBuildingButton" class="btn btn-default") Submit
+
+
+
+
+
+    //form(role="form" id="insertBuildingForm" validation="blur")
+                    //    .form-group
+                    //        label(for="name") Name
+                    //        input(type="text" class="form-control" name="name")
+                    //    .form-group
+                    //        label(for="address") Address
+                    //        input(type="text" class="form-control" name="address")
+                    //    button(type="submit" id="createBuilding" class="btn btn-default") Submit

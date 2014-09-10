@@ -1,0 +1,53 @@
+template(name="space")
+    with space
+        .page-header.position-relative
+            h1.inline
+                a(href="{{pathFor 'buildingSpaces' _id=building_id}}") #{../building.name}
+                small
+                    i.ace-icon.fa.fa-angle-double-right
+                    div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="name" data-value="#{name}" data-context="Spaces") #{name}
+            .btn-group.pull-right
+                a.btn.btn-info(id="newSpaceButton")
+                    i.ace-icon.fa.fa-plus
+                    | New space
+        .clearfix
+        .profile-user-info.profile-user-info-striped
+            .profile-info-row
+                .profile-info-name Current Tenant
+                .profile-info-value
+                    with ../current_tenant
+                        p(style='white-space:pre;')
+                            |Nom: #{firstname} #{lastname}
+                            |Email: #{email}
+                            | Tel: #{phone}
+                            | exit: {{fromNow exit_date}}
+            .profile-info-row
+                .profile-info-name Rent
+                .profile-info-value
+                    div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="rent" data-value="#{rent}" data-context="Spaces") #{rent}
+
+            .profile-info-row
+                .profile-info-name Charges
+                .profile-info-value
+                    div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="charges" data-value="#{charges}" data-context="Spaces") #{charges}
+            .profile-info-row
+                .profile-info-name Contract Type
+                .profile-info-value
+                    div(id="text" class="editable" data-type="select" data-pk="#{_id}" data-name="contract_type" data-value="#{contract_type}" data-source="{'Furnished': 'Furnished', 'Not Furnished': 'Not Furnished'}" data-context="Spaces") #{contract_type}
+            .profile-info-row
+                .profile-info-name Creation time
+                .profile-info-value added #{created_on}
+        .space-12
+        .row
+            .col-xs-12
+                .tabbable
+                    ul.nav.nav-tabs
+                        li#menu-spaces(class="{{isActive 'buildingSpaceTenants'}}")
+                            a(href="{{pathFor 'buildingSpaceTenants' _building_id=building_id _id=_id}}") #{nbr_spaces} Tenants
+                        li#menu-dashboards(class="{{isActive 'buildingSpaceTransactions'}}")
+                            a(href="{{pathFor 'buildingSpaceTransactions' _building_id=building_id _id=_id}}") Transactions
+                    .tab-content
+                        with ..
+                            +yield "subTemplate"
+
+

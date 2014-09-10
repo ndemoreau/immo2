@@ -1,0 +1,15 @@
+<template name="slimLayout">
+    <header>
+        {{> yield region='header'}}
+    </header>
+    <div id="main">
+        <div class="container-fluid">
+            {{> notifications}}
+            {{> yield}}
+            {{! Also a sidebar! }}
+        </div>
+    </div>
+    <footer>
+        {{> yield region='footer'}}
+    </footer>
+</template>

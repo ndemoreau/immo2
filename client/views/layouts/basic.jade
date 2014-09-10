@@ -1,0 +1,44 @@
+template(name="basicLayout")
+    +header
+    #main-container.main-container
+        #sidebar.sidebar.sidebar-fixed.responsive
+            #sidebar-shortcuts.sidebar-shortcuts
+            ul(class="nav nav-list")
+                li
+                    a(href="{{pathFor 'buildings'}}")
+                        i(class="menu-icon glyphicon glyphicon-home")
+                        span.menu-text Buildings
+                li
+                    a(href="{{pathFor 'spaces'}}")
+                        i(class="menu-icon glyphicon glyphicon-bell")
+                        span.menu-text Spaces
+                li
+                    a(href="{{pathFor 'doctypes'}}")
+                        i(class="menu-icon glyphicon glyphicon-file")
+                        span.menu-text Document templates
+                li
+                    a(href="{{pathFor 'fsbanks'}}")
+                        i(class="menu-icon fa fa-bank")
+                        span.menu-text Bank uploads
+                li
+                    a(href="{{pathFor 'transactions'}}")
+                        i(class="menu-icon fa fa-barcode")
+                        span.menu-text Transactions
+                li
+                    a(href="{{pathFor 'invoices'}}")
+                        i(class="menu-icon fa fa-barcode")
+                        span.menu-text Invoices
+                li
+                    a(href="{{pathFor 'contacts'}}")
+                        i(class="menu-icon fa fa-user")
+                        span.menu-text Contacts
+
+    .sidebar-toggle.sidebar-collapse
+        .main-content
+            +breadcrumb
+            .page-content
+                +notifications
+                +yield
+                | {{! Also a sidebar! }}
+    +footer
+    +yield "modal"

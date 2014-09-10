@@ -1,0 +1,51 @@
+template(name="transactions")
+    .page-header.position-relative
+        h1.inline {{total}} Transactions
+        .btn.btn-info.pull-right(id="matchingButton")
+            i.ace-icon.fa.fa-plus
+            | MatchTransactions
+    .clearfix
+    +transactionsList
+template(name="transactionsList")
+    .row
+        .col-xs-12
+            ul.inline
+                li.badge.filter(data-toggle="open" class="{{isActiveTransactionFilter 'open'}}") Open
+                li.badge.filter(data-toggle="contact" class="{{isActiveTransactionFilter 'contact'}}") Contact
+                li.badge.filter(data-toggle="to_approve" class="{{isActiveTransactionFilter 'to_approve'}}") To be approved
+                li.badge.filter(data-toggle="closed" class="{{isActiveTransactionFilter 'closed'}}") Closed
+
+    .full-height-panel
+        .transactions
+            +transactionsTable
+        +transaction
+template(name="transactionsTable")
+    table.table.table-striped.table-bordered.table-hover
+        thead
+            tr
+                th.center
+                    label.position-relative
+                        input(type="checkbox" class="ace")
+                        span.lbl
+                th Date
+                th Amount
+                th Status
+                th Account
+                th Description
+                th Nbr
+                th Match
+        tbody
+            each transactions
+                tr(data-transaction="#{_id}" href="{{pathFor 'transaction'}}")
+                    td.center(style="width: 35px;")
+                        label.position-relative
+                            input(type="checkbox" class="ace")
+                            span.lbl
+                    td.transaction-line(style="width: 80px;") {{date value_date}}
+                    td.transaction-line(style="width: 80px;") #{amount} €
+                    td.transaction-line.center(style="width: 35px;") {{statusIcon status}}
+                    td.transaction-line #{account_nbr}
+                    td.transaction-line #{description}
+                    td.transaction-line #{entry_nbr}
+                    td.transaction-line #{matching_id}
+

@@ -1,0 +1,40 @@
+template(name="fsbanks")
+    .page-header.position-relative
+        h1.inline {{total}} Bank uploads
+    .clearfix
+    .row
+        .col-xs-12.col-sm-6
+            label.ace-file-input
+                input.myFileInput(type="file")
+                span.ace-file-container(data-title="New bank upload")
+                    span.ace-file-name(data-title="No file...")
+                        i.ace-icon.fa.fa-upload
+    +fsbanksList
+template(name="fsbanksList")
+    .row
+        .col-xs-12
+            table.table.table-striped.table-bordered.table-hover
+                thead
+                    tr
+                        th Date
+                        th Period
+                        th Size
+                        th Status
+                        th
+                tbody
+                    each fsbanks
+                        tr
+                            unless this.isUploaded
+                                td(colspan="5")
+                                    +FS.UploadProgressBar bootstrap=true
+                            else
+                                td #{name}
+                                td period
+                                td {{this.size}} kb
+                                td
+                                    a(href="{{url}}" target="_blank") download
+                                td
+                                    +FS.DeleteButton class="btn btn-danger btn-xs"
+                                        | Delete me
+
+

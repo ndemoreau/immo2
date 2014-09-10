@@ -1,0 +1,21 @@
+template(name="contacts")
+    .page-header.position-relative
+        h1.inline {{total}} Contacts
+        .btn.btn-info.pull-right(id="newContactButton")
+            i.ace-icon.fa.fa-plus
+            | New contact
+    .clearfix
+    .widgets
+        .row
+            +each contacts
+                .col-xs-12.col-sm-6
+                    .widget-box.widget-color-purple
+                        .widget-header
+                            h4
+                                a(href="{{pathFor 'contact'}}") #{fullname}
+                        .widget-body
+                            p Content here
+
+    +newContact
+
+

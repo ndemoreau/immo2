@@ -1,0 +1,25 @@
+template(name="invoices")
+    .page-header.position-relative
+        h1.inline {{total}} Invoices
+        .btn-group.pull-right
+            .btn.btn-info(id="newInvoiceButton")
+                i.ace-icon.fa.fa-plus
+                | New invoice
+            a.btn.btn-primary#generateRentInvoicesButton
+                | Generate rent invoices
+    .clearfix
+    .widgets
+        .row
+            +each invoices
+                .col-xs-12.col-sm-6
+                    .widget-box.widget-color-purple
+                        .widget-header
+                            h4
+                                a(href="{{pathFor 'invoice'}}") #{invoice_nbr} #{contact.firstname} #{contact.lastname}
+                        .widget-body
+                            p #{month}
+                            p #{description}: #{amount}
+
+    +newInvoice
+
+

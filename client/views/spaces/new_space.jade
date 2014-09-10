@@ -1,0 +1,25 @@
+template(name="newSpace")
+    #newSpace.modal.fade
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button(type="button" class="close" data-dismiss="modal" aria-hidden="true") &times;
+                    h4(class="modal-title" id="myModalLabel") Add a new space for this building
+                .modal-body
+                    +autoForm(collection="Spaces" id="insertSpaceForm" type="insert" validation="blur")
+                        fieldset
+                            +afQuickField name="name"
+                            if building_id
+                                input(type="hidden" data-schema-key="building_id" name="building_id" value="#{building_id}")
+                            else
+                                .form-group
+                                    label.control-label(for="building_id") Building
+                                        select(name="building_id" required data-schema-key="building_id" class="form-control")
+                                            option(value="") Select a building
+                                            +buildingOptions
+                        button(type="submit" id="createSpace" class="btn btn-default") Submit
+
+
+template(name="buildingOptions")
+    +each buildings
+        option(value="{{_id}}") #{name}

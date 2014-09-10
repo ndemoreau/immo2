@@ -1,0 +1,35 @@
+template(name="tenants")
+    .page-header.position-relative
+        a.btn.btn-info.pull-right#newTenantButton
+            i.ace-icon.fa.fa-plus
+            | New tenant
+        h1 {{total}} Tenants
+    .clearfix
+    +tenantsList
+
+template(name="spaceTenants")
+    #tenantsList
+        .animated.fadeIn
+            .page-header.position-relative
+                a.btn.btn-info.btn-sm#newTenantButton
+                    i.ace-icon.fa.fa-plus
+                    | New tenant
+            .clearfix
+            +tenantsList
+    +newTenant
+
+template(name="tenantsList")
+    .widgets
+        .row
+            +each tenants
+                +tenantWidget
+template(name="tenantWidget")
+    .col-xs-12.col-sm-6
+        .widget-box.widget-color-purple
+            .widget-header
+                h4
+                    a(href="/buildings/#{building_id}/spaces/#{space_id}/tenants/#{_id}") #{contact.fullname}
+            .widget-body
+                p Exit date {{fromNow exit_date}}
+                p building: #{building_id} space: #{space_id} tenant: #{_id}
+                a(href="#" class="btn" id="deleteTenantButton") Delete

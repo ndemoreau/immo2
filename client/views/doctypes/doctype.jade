@@ -1,0 +1,40 @@
+template(name="doctype")
+    .animated.fadeIn
+        +with doctype
+                .doctype
+                    .page-header.position-relative
+                        h1.inline(id="text" class="editable popup" data-type="text" data-pk="#{_id}" data-name="name" data-value="#{name}" data-context="Doctypes") #{name}
+                        a.btn.btn-info.pull-right(id="editDoctypeButton")
+                            i.ace-icon.fa.fa-plus
+                            | Edit doctype
+                    .profile-user-info.profile-user-info-striped
+                        .profile-info-row
+                            .profile-info-name Address
+                            .profile-info-value
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="address" data-value="#{address}" data-context="Doctypes") #{address}
+                        .profile-info-row
+                            .profile-info-name Address 2
+                            .profile-info-value
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="address2" data-value="#{address2}" data-context="Doctypes") #{address2}
+
+                        .profile-info-row
+                            .profile-info-name City
+                            .profile-info-value
+                                span(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="zip" data-value="#{zip}" data-context="Doctypes") #{zip}
+                                | &nbsp;
+                                div(id="text" class="editable" data-type="text" data-pk="#{_id}" data-name="city" data-value="#{city}" data-context="Doctypes") #{city}
+                        .profile-info-row
+                            .profile-info-name Creation time
+                            .profile-info-value added #{created_on}
+                    .space-12
+                    .row
+                        .col-xs-12
+                            .tabbable
+                                ul.nav.nav-tabs
+                                    li#menu-spaces(class="{{isActive 'doctypeSpaces'}}")
+                                        a(href="{{pathFor 'doctypeSpaces'}}") #{nbr_spaces} Spaces
+                                    li#menu-dashboards(class="{{isActive 'doctypeDashboards'}}")
+                                        a(href="{{pathFor 'doctypeDashboards'}}") Dashboards
+                                .tab-content
+                                    +yield "subTemplate"
+

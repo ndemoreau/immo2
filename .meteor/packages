@@ -1,0 +1,38 @@
+# Meteor packages used by this project, one per line.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+insecure
+natestrauser:animate-css
+aldeed:autoform
+simison:bootstrap3-less
+mrt:bootstrap3-wysihtml5
+cfs:standard-packages
+cfs:filesystem
+cfs:s3
+cfs:ui
+aldeed:collection2
+iron:router
+waitingkuo:jade
+mrt:moment
+gfk:notifications
+aldeed:simple-schema
+meteorhacks:subs-manager
+mrt:x-editable-bootstrap3
+miguelalarcos:xwidgets
+coffeescript
+dburles:collection-helpers
+accounts-base
+ian:accounts-ui-bootstrap-3
+accounts-ui
+natestrauser:font-awesome
+mrt:chosen-package
+accounts-password
+accounts-facebook
+underscore
+nemo64:bootstrap
+less
+mrt:jquery-csv
+
